@@ -1,4 +1,4 @@
-name: Theme deploy
+name: Theme deploy new
 on: [push]
 jobs:
   deploy:
