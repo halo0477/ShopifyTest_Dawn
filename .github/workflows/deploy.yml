@@ -31,4 +31,4 @@ jobs:
           # Theme ID
           SHOPIFY_CLI_THEME_ID: ${{ secrets.SHOPIFY_CLI_THEME_ID }}
           SHOPIFY_CLI_TTY: 0
-        run: shopify theme push --verbose
+        run: shopify theme push --theme $SHOPIFY_CLI_THEME_ID
