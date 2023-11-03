@@ -15,6 +15,13 @@ jobs:
           bundler: "latest"
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli @shopify/theme
+      - name: Print Environment Variables
+        run: |
+          echo "Store: $SHOPIFY_FLAG_STORE"
+          echo "Theme ID: $SHOPIFY_CLI_THEME_ID"
+          # Do not print out sensitive tokens or keys
+      - name: List files in directory
+        run: ls -R
       - name: Deploy
         env:
           # Store URL, like your-store.myshopify.com
@@ -24,4 +31,4 @@ jobs:
           # Theme ID
           SHOPIFY_CLI_THEME_ID: ${{ secrets.SHOPIFY_CLI_THEME_ID }}
           SHOPIFY_CLI_TTY: 0
-        run: shopify theme push --theme ${{ env.SHOPIFY_CLI_THEME_ID }}
+        run: shopify theme push --verbose
