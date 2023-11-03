@@ -5,7 +5,7 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -14,15 +14,9 @@ jobs:
           ruby-version: 3.1
           bundler: "latest"
       - name: Install Shopify CLI
-        run: npm install -g @shopify/cli @shopify/theme
-      - name: Print Environment Variables
-        run: |
-          echo "Store: $SHOPIFY_FLAG_STORE"
-          echo "Theme ID: $SHOPIFY_CLI_THEME_ID"
-          # Do not print out sensitive tokens or keys
-      - name: List files in directory
-        run: ls -R
+        run: npm install -g @shopify/cli
       - name: Deploy
+        run: shopify theme push
         env:
           # Store URL, like your-store.myshopify.com
           SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
@@ -32,4 +26,3 @@ jobs:
           SHOPIFY_CLI_THEME_ID: ${{ secrets.SHOPIFY_CLI_THEME_ID }}
           SHOPIFY_CLI_TTY: 0
           SHOPIFY_CLI_DEBUG: 1
-        run: shopify theme push --live
