@@ -24,4 +24,4 @@ jobs:
           # Theme ID
           SHOPIFY_CLI_THEME_ID: ${{ secrets.SHOPIFY_CLI_THEME_ID }}
           SHOPIFY_CLI_TTY: 0
-        run: shopify theme push --path halo0477/ShopifyTest_Dawn --theme ${SHOPIFY_CLI_THEME_ID}
+        run: shopify theme push --theme ${{ env.SHOPIFY_CLI_THEME_ID }}
